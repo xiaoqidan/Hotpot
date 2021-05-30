@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 驱动位置 -->
+    <classPathEntry location="E:\java_jar_my\mysql-connector-java-5.1.39-bin.jar" />
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--xml再次生成时覆盖掉 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"></plugin>
+        <!--隐藏自动生成的很多注解,而且context下的标签是有顺序要求的-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/hotpot?characterEncoding=utf8"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+    <!-- 默认是false， 功能：对数据的长度，使用不同大小是数字类型进行存放-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+<!--对应pojo -model  这个应该是放类的位置，以前使用的单独的应用，生成完了还要手动复制到我们需要使用的项目中，这里可以自动就生成到指定的位置。-->
+        <javaModelGenerator targetPackage="com.xihua.hotpot.pojo" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" /> <!--去掉string中多余的空格-->
+        </javaModelGenerator>
+<!-- 对应的xml文件-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+<!-- 对应dao -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xihua.hotpot.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+<!-- 对应数据库中的表-->
+        <table tableName="table_info" domainObjectName="Table" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableCountByExample="false"/>
+    </context>
+</generatorConfiguration>

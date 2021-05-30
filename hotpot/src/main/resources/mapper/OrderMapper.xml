@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xihua.hotpot.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.xihua.hotpot.pojo.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="userName" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+    <result column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="table_number" jdbcType="INTEGER" property="tableNumber" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+      <result column="psy" jdbcType="VARCHAR" property="psy" />
+      <result column="psyPhone" jdbcType="VARCHAR" property="psyPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, money, bz, location_id, type, table_number, create_time,status,psy,psyPhone
+  </sql>
+
+  <!-- 查询 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectOrder" parameterType="com.xihua.hotpot.dto.OrderQueryDto" resultMap="BaseResultMap">
+    select
+    orders.id, user_id,name, money, bz, location_id, type, table_number, create_time,status,psy,psyPhone
+    from orders join user on orders.user_id = user.id
+    <where>
+      <if test="name != null and name != ''">
+        and user.name like '%${name}%'
+      </if>
+      <if test="type != null ">
+        AND orders.type = #{type}
+      </if>
+      <if test="status != null ">
+        AND orders.status = #{status}
+      </if>
+    </where>
+      order by create_time desc
+  </select>
+
+  <!-- 删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <!-- 插入 -->
+  <insert id="insert" parameterType="com.xihua.hotpot.pojo.Order">
+    insert into orders (user_id, money,
+      bz, location_id, type,
+      table_number, create_time)
+    values ( #{userId,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL},
+      #{bz,jdbcType=VARCHAR}, #{locationId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT},
+      #{tableNumber,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <!-- 更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.xihua.hotpot.pojo.Order">
+    update orders
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null">
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="locationId != null">
+        location_id = #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="tableNumber != null">
+        table_number = #{tableNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+        <if test="psy != null">
+            psy = #{psy,jdbcType=VARCHAR},
+        </if>
+        <if test="psyPhone != null">
+            psyPhone = #{psyPhone,jdbcType=VARCHAR},
+        </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

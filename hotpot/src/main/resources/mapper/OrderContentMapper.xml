@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xihua.hotpot.mapper.OrderContentMapper">
+  <resultMap id="BaseResultMap" type="com.xihua.hotpot.pojo.OrderContent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="food_id" jdbcType="INTEGER" property="foodId" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="price" jdbcType="FLOAT" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, food_id, number, price
+  </sql>
+  <!-- 查询 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from food_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+         name,fo.price,fo.number
+        from food_order fo join food on fo.food_id = food.id
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </select>
+
+  <!-- 删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from food_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <!-- 插入 -->
+  <insert id="insert" parameterType="com.xihua.hotpot.pojo.OrderContent">
+    insert into food_order (order_id, food_id,
+      number, price)
+    values ( #{orderId,jdbcType=INTEGER}, #{foodId,jdbcType=INTEGER},
+      #{number,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL})
+  </insert>
+
+  <!-- 更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.xihua.hotpot.pojo.OrderContent">
+    update food_order
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="foodId != null">
+        food_id = #{foodId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

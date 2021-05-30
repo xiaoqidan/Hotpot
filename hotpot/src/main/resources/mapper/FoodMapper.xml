@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xihua.hotpot.mapper.FoodMapper">
+  <resultMap id="BaseResultMap" type="com.xihua.hotpot.pojo.Food">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="unit" jdbcType="CHAR" property="unit" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+      <result column="tj" jdbcType="INTEGER" property="tj" />
+  </resultMap>
+
+  <!-- food表中的字段 -->
+  <sql id="Base_Column_List">
+    id, category_id, name, size, img_url, valid, unit, price, type, number ,tj
+  </sql>
+  <!-- 通过food的id 获得具体的food -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 通过目录id 获得目录下的所有food -->
+  <select id="selectByCategoryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from food
+    where category_id = #{categoryId,jdbcType=INTEGER} and valid = 1
+  </select>
+
+
+  <select id="selectFoods"  parameterType="com.xihua.hotpot.dto.FoodQueryDto" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from food
+
+    <where>
+      <if test="name != null and name != ''">
+        and name like '%${name}%'
+      </if>
+      <if test="categoryId != null ">
+        AND category_id = #{categoryId}
+      </if>
+      <if test="tj != null ">
+        AND tj = #{tj}
+      </if>
+      <if test="type != null ">
+        AND type = #{type}
+      </if>
+      <if test="valid != null ">
+        AND valid = #{valid}
+      </if>
+    </where>
+  </select>
+
+  <!-- 获得推荐food 前五个 -->
+  <select id="getTjFood"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from food
+    where  valid = 1 and tj = 1
+    order by number desc
+  </select>
+
+  <!-- 获得所有food -->
+  <select id="selectList" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+    select
+      food.id, category_id, food.name, size, img_url, food.valid, unit, price, food.type, number,category.name categoryName
+    from food join category on food.category_id = category.id
+    where food.type = #{type,jdbcType=INTEGER}
+  </select>
+
+  <!-- 删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from food
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <!-- 插入 -->
+  <insert id="insert" parameterType="com.xihua.hotpot.pojo.Food">
+    insert into food (id, category_id, name, 
+      size, img_url, valid, unit, price, type)
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{size,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{valid,jdbcType=TINYINT}, 
+      #{unit,jdbcType=CHAR}, #{price},#{type})
+  </insert>
+
+    <!-- 更新 如果字段没有值，那么就不更新对应字段-->
+  <update id="updateByPrimaryKeySelective" parameterType="com.xihua.hotpot.pojo.Food">
+    update food
+    <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null">
+        valid = #{valid,jdbcType=TINYINT},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=CHAR},
+      </if>
+        <if test="price != null">
+          price = #{price,jdbcType=INTEGER},
+        </if>
+        <if test="type != null">
+            type = #{type,jdbcType=TINYINT},
+        </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+        <if test="tj != null">
+            tj = #{tj,jdbcType=TINYINT},
+        </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
