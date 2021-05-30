@@ -1,0 +1,40 @@
+<view class="service">
+  <form bindsubmit="bindSubmitForm" class="service">
+  <view class="form-group">
+    <view class="title ">菜名：</view>
+    <input placeholder="请填写菜名" placeholder-class="phc" name="name" value="{{food.name}}" maxlength="20"
+      focus="{{formNameFocus}}"></input>
+  </view>
+  <view class="form-group">
+    <view class="title ">份量：</view>
+    <input placeholder="请填写份量信息 单位/g" placeholder-class="phc" name="size" value="{{food.size}}" maxlength="20"
+      focus="{{formNameFocus}}"></input>
+  </view>
+  <view class="form-group">
+    <view class="title ">价格：</view>
+    <input placeholder="请填写价格信息" placeholder-class="phc" name="price" value="{{food.price}}" maxlength="20"
+      focus="{{formNameFocus}}"></input>
+  </view>
+  <view class="picture">
+    <view class="left ">分类：</view>
+    <picker bindchange="bindPickerChange" name="categoryId" name="categoryId" value="{{index}}" range="{{array}}">
+      <view class="right">
+        {{array[index]}}
+      </view>
+    </picker>
+  </view>
+  <!--图片-->
+  <view class='picture'>
+    <view class='left'>图片：</view>
+    <view class='right'>
+       <view class="parcel" wx:for="{{pics}}" wx:key="{{index}}">
+        <image src="{{pics[index]}}" class="According" data-index="{{index}}" mode="aspectFill" bindtap="previewImg"></image>
+        <image src="/images/error.png" class='deleteimg' catchtap="deleteImg" data-index="{{index}}"></image>
+       </view>
+      <image src='/images/add.png' class='add' bindtap='choose'></image>
+    </view>
+  </view>
+  <!--提交评价-->
+  <button  formType="submit" class='btn'>提交</button>
+  </form>
+</view>

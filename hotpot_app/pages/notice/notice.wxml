@@ -1,0 +1,164 @@
+<!--头部消息中心-->
+<view class='title' style='height:{{navH}}px'  catchtouchmove='true'>
+  <view class='title-text'>消息中心</view>
+  <!-- 私信、通知切换栏 -->
+<view class="selectTab" style='margin-top:{{navH}}px' catchtouchmove='true'>
+  <view class="flex-row">
+    <!-- <view class="message {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">
+    私信
+    <view class='bubble'>
+      <view class='num'>3</view>
+    </view>
+    </view> -->
+    <view class="notify active" data-current="1" bindtap="clickTab">
+    通知
+    <!--气泡提示-->
+    <view class='bubble2'>
+      <view class='num'>21</view>
+    </view>
+    </view>
+  </view>
+  <view class='onTabLine' style="margin-left:{{175+currentTab*273}}rpx" catchtouchmove="ture"></view>
+  <view class='line'></view>
+</view>
+</view>
+ 
+<!--私信消息列表-->
+<!-- <scroll-view scroll-y="true" class="message-list" style="margin-top:{{navH+47}}px;height:1200rpx"  wx:if="{{currentTab==0}}" > -->
+  <!--示例用户1-->
+  <!-- <view class='user' bindtap='goTocontactPage'>
+  <image class='header-icon' src='/images/icon1.jpeg'></image>
+  <view class='user-content'>
+    <view class='firstline'>
+      <view class='apart'>
+      <view class='username'>
+        <text>测试1</text>
+      </view>
+      <view class='cooperation'>
+        <image src='./images/6.png'></image>
+      </view>
+      </view>
+      <view class='time'>
+        <view class='time-num'>9:36</view>
+      </view>
+    </view>
+    <view class='secondline'>
+      <view class='dialog'>
+      <text>你想要怎么拍呢？</text>
+      </view>
+      <view class='dialog-nums'>
+        <view class='bubble3'>
+          <view class='num'>2</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view> -->
+<!--分割线-->
+<!-- <view class='linecut'></view> -->
+  <!--示例用户2-->
+  <!-- <view class='user' bindtap='goTocontactPage'>
+  <image class='header-icon' src='https://b267.photo.store.qq.com/psb?/V13v0ZyH3zvYu7/9Ne*obpt0tAkfi3fZZij7.1VF4qT363gGq021zfYWQ0!/b/dAsBAAAAAAAA&bo=bgFuAQAAAAAFByQ!&rf=viewer_4'></image>
+  <view class='user-content'>
+    <view class='firstline'>
+    <view class='apart'>
+      <view class='username'>
+        <text>测试2</text>
+      </view>
+      <view class='cooperation'> -->
+        <!-- <image src='./images/6.png'></image> -->
+      <!-- </view>
+    </view>
+      <view class='time'>
+        <view class='time-num'>8:16</view>
+      </view>
+    </view>
+    <view class='secondline'>
+      <view class='dialog'>
+      <text>约拍时间是这周六下午的两点钟</text>
+      </view>
+      <view class='dialog-nums'>
+        <view class='bubble3'>
+          <view class='num'>1</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view> -->
+<!--分割线-->
+<!-- <view class='linecut'></view>
+</scroll-view> -->
+<!--关注消息列表框-->
+<scroll-view scroll-y class="notify-list" style="margin-top:{{navH+47}}px;height:1800rpx;"  wx:if="{{currentTab==1}}">
+  <!--系统通知-->
+  <view class='notify-type' bindtap='goToSystemPage'>
+    <view class='notify-icon'>
+      <image src='./images/tongzhi.png'></image>
+    </view>
+    <view class='notify-name'>
+      系统通知
+      <view class='notify-num'>
+        <view class='nums'>11</view>
+      </view>
+    </view>
+    <view class='right'>
+      <!-- <image src=''></image> -->
+    </view>
+  </view>
+  <view class='liner'></view>
+  <!--点赞-->
+  <view class='thumbs-up-type' bindtap='goToDianzanPage'>
+    <view class='notify-icon'>
+      <image src='./images/dianzan.png'></image>
+    </view>
+    <view class='thumbs-up-name'>
+      点赞
+      <view class='thumbs-up-num'>
+        <view class='nums'>6</view>
+      </view>
+    </view>
+    <view class='right'>
+      <!-- <image src=''></image> -->
+    </view>
+  </view>
+  <view class='liner'></view>
+  <!--评论-->
+    <view class='dialog-type' bindtap='goToCommentPage'>
+    <view class='dialog-icon'>
+      <image src='./images/dialog.png'></image>
+    </view>
+    <view class='dialog-name'>
+      评论
+      <view class='dialog-num'>
+        <view class='nums'>2</view>
+      </view>
+    </view>
+    <view class='right'>
+      <!-- <image src=''></image> -->
+    </view>
+  </view>
+  <view class='liner'></view>
+<!--我关注的-->
+  <view class='follow-type' bindtap='goToConcernPage'>
+    <view class='follow-icon'>
+      <image src='./images/guanzhu.png'></image>
+    </view>
+    <view class='follow-name'>
+      我关注的
+      <view class='follow-num'>
+        <view class='nums'>1</view>
+      </view>
+    </view>
+    <view class='right'>
+      <!-- <image src=''></image> -->
+    </view>
+  </view>
+  <view class='liner'></view>
+<!--底部消息提示框-->
+<view class="unread">
+  <text>您有21条未读通知</text>
+</view>
+</scroll-view> 
+ 
+<!--底部导航-->
+<tabbar tabbar="{{tabbar}}"></tabbar> 

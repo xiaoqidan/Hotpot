@@ -1,0 +1,18 @@
+<view class="main">
+    <view class="header">
+        <!-- <image src="{{thumb}}" class="thumb"></image> -->
+        <open-data class="thumb" type="userAvatarUrl"></open-data>
+        <open-data class="nickname" type="userNickName"></open-data>
+        <text class="about">关于我们</text>
+    </view>
+    <view class="address-box">
+        <view class="address-manage">
+            <navigator url="/pages/address/list/address-list">地址管理</navigator>
+        </view>
+    </view>
+    <view class="orders-box">
+        <view class="orders" bindtap='goOrder'>我的订单</view>
+        <!-- <view  class="orders" bindtap='goNotice'>我的消息</view> -->
+        <!-- <view wx:if="{{auth}}" class="orders" bindtap='goCategoryEdit'>分类设置</view> -->
+    </view>
+</view>

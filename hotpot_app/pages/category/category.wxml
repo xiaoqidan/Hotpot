@@ -1,0 +1,62 @@
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th" style="width:35%">名称</view>
+    <view class="th "style="width:10%">排序</view>
+    <view class="th "style="width:40%">展示</view>
+    <view class="th "style="width:15%">操作</view>
+  </view>
+  <block wx:for="{{listData}}" wx:key="{[code]}">
+    <view class="tr bg-g" bindtap="openEdit"  data-id="{{item.id}}" wx:if="{{index % 2 == 0}}">
+      <view class="td" style="width:35%">{{item.name}}</view>
+      <view class="td" style="width:10%">{{item.sort}}</view>
+      <view class="td" style="width:40%">        
+        <radio-group catchtap="setValie" data-id="{{item.id}}">
+					<label style="margin-right:10px"><radio value="1"  checked="{{item.valid == 1}}"/> 是</label>
+					<label ><radio value="0"  checked="{{item.valid == 0}}"/>否</label>
+        </radio-group>
+      </view>
+      <view class="td" style="width:15%">
+        <i class="iconfont icon-jian plus-icon"  data-id="{{item.id}}" catchtap="deleteCategory"></i>
+      </view>
+    </view>
+    <view class="tr" bindtap="openEdit" data-id="{{item.id}}" wx:else>
+      <view class="td" style="width:35%">{{item.name}}</view>
+      <view class="td" style="width:10%">{{item.sort}}</view>
+      <view class="td" style="width:40%">
+        <radio-group catchtap="setValie" data-id="{{item.id}}">
+					<label style="margin-right:10px"><radio value="1"  checked="{{item.valid == 1}}"/> 是</label>
+					<label ><radio value="0"  checked="{{item.valid == 0}}"/>否</label>
+        </radio-group>
+      </view>
+      <view class="td" style="width:15%">
+        <i class="iconfont icon-jian plus-icon"  data-id="{{item.id}}" catchtap="deleteCategory"></i>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="btnBox">
+  <view class="add" bindtap="openEdit">
+      <text>新增分类</text>
+  </view>
+</view>
+<!-- 选择弹窗 -->
+<view class="drawer_screen" bindtap="openEdit" data-statu="close" wx:if="{{edit}}"></view>
+<view class="drawer_box_ad" wx:if="{{edit}}">
+	<form bindsubmit="bindSubmitForm" style="width:100%">
+		<view class="form-box shadow">
+			<view class="form-group">
+				<view class="title ">名称：</view>
+				<input placeholder="填写分类名称" placeholder-class="phc" name="name" value="{{category.name}}" maxlength="20"
+					focus="{{formNameFocus}}"></input>
+      </view>
+			<view class="form-group">
+				<view class="title ">排序：</view>
+				<input placeholder="填写序号" placeholder-class="phc" name="sort" value="{{category.sort}}" maxlength="20"
+					focus="{{formNameFocus}}"></input>
+			</view>
+		</view>
+		<view class="padding-bottom flex flex-direction"> 
+			<button  formType="submit" class="btn bg-darkgreen margin-top-s text-bold large bg-{{skin}}" >提交</button>  
+		</view>
+	</form>
+</view>

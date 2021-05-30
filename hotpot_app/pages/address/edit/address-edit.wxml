@@ -1,0 +1,25 @@
+<view class="main main-my-base  main-{{skin}}">
+	<form bindsubmit="bindSubmitForm" style="width:100%">
+		<view class="form-box shadow">
+			<view class="form-group">
+				<view class="title ">*姓名</view>
+				<input placeholder="填写您的姓名" placeholder-class="phc" name="name" value="{{address.name}}" maxlength="20"
+					focus="{{formNameFocus}}"></input>
+      </view>
+			<view class="form-group">
+				<view class="title ">*电话</view>
+				<input placeholder="填写您的电话" placeholder-class="phc" name="telephone" value="{{address.telephone}}" type="number" maxlength="11" minlength="11"
+					focus="{{formNameFocus}}"></input>
+			</view>
+			<view class="form-group"  catchtap='onGoWeizhi'>
+				<view class="title ">*地址</view>
+				<input placeholder="填写您的外卖地址" placeholder-class="phc" name="content" value="{{address.content}}" maxlength="50"
+					focus="{{formNameFocus}}"></input>
+			</view>
+		</view>
+		<view class="padding-bottom flex flex-direction"> 
+			<button  formType="submit" class="btn bg-orange margin-top-s text-bold large bg-{{skin}}">提交</button>  
+		</view>
+	</form>
+</view>
+

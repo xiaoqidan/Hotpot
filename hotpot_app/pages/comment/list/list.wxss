@@ -1,0 +1,128 @@
+.shop-title {
+  display: flex;
+  margin: 10rpx 0 10rpx 0;
+  border-bottom: 1rpx solid #eee;
+  border-top: 1rpx solid #eee;
+  padding-top:15rpx;
+  padding-bottom:5rpx;
+  font-size: 20px;
+  justify-content: center;
+}
+.shop-title image {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+  width: 34rpx;
+  height: 34rpx
+}
+.star {
+  float: left;
+  width: 54rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+.star image{
+  width: 35rpx;
+  height: 35rpx;
+}
+.shop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25rpx;
+  margin-top: 10rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.user-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.user-image image {
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+}
+.right {
+  flex: 2;
+  padding-right: 30rpx;
+}
+.right .title {
+  font-size: 30rpx;
+  float: left;
+  width: 50%;
+}
+.right .right-ad {
+  font-size: 30rpx;
+  display: flex;
+  justify-content: right;
+}
+.right .sell-count {
+  font-size: 22rpx;
+  color: #999;
+  display: flex;
+  justify-content: flex-end;
+  margin: 15rpx 0 30rpx 0
+}
+.right .detail {
+  font-size: 28rpx;
+  font-weight: 200;
+  color: #666;
+  padding-bottom: 5rpx;
+  padding-top:10rpx;
+}
+.detail .space{
+  margin-left: 60rpx;
+}
+.back {
+  font-size: 28rpx;
+  font-weight: 200;
+  color: #666;
+  padding-top: 15rpx;
+  padding-bottom: 10rpx;
+  border-top: 1rpx solid #eee;
+}
+.icon {
+  flex-direction: column;
+  margin-top: 8rpx;
+}
+.icon image {
+  margin: 0 2rpx 0 2rpx;
+  width: 35rpx;
+  height: 35rpx;  
+}
+
+.content {
+  width: 100%;
+  margin-left: 40rpx;
+  overflow: hidden;
+  border-bottom:1px solid #ccc;
+  padding:0 0 26rpx 0;
+  box-sizing: border-box;
+}
+.content .left {
+  width: 100rpx;
+  font-size: 30rpx;
+  float: left;
+  padding-top: 20rpx;
+}
+.content .right {
+  width: 610rpx;
+  font-size: 24rpx;
+  float: left;
+  color: #888;
+}
+.content .right text {
+  font-size: 24rpx;
+  padding: 13rpx 24rpx;
+  float: left;
+  border: 1px solid #888;
+  border-radius: 10rpx;
+  margin-right: 34rpx;
+  margin-top: 20rpx;
+}
+.labelColor {
+  color: #FF9C35;
+  border: 1px solid #FF9C35 !important;
+}

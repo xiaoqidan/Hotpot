@@ -1,0 +1,38 @@
+<!-- 地址列表 -->
+<view>
+	<view class="addresses {{(addressesList.length>0 && !loading) ? '':'hidden'}}">
+        <view  id="t{{index}}" wx:for="{{addressesList}}" wx:for-item="address" wx:for-index="index" class="address">
+					<view class="detail" bindtap="goEdit" data-id='{{address.id}}'>
+							<view class="customer" >
+								<view class="reciver">姓名：{{ address.name }}</view>
+								<view class="tel">{{ address.telephone }} </view>
+							</view>
+							<view class="addr">地址：{{ address.content }} </view>
+					</view>
+					<view class="operation">
+						<radio-group bindchange="setDefault" data-id='{{address.id}}' style="width:90%;display: flex;flex-direction: column;">
+							<label><radio name="valid" value="1" checked="{{address.valid == 1}}"  />设置为默认</label>
+						</radio-group>
+						<view style="width:10%;display: flex;flex-direction: column;">
+							<i class="iconfont icon-jian plus-icon"  data-id='{{address.id}}'  catchtap="delete"></i>
+						</view>
+					</view>
+				</view>
+				<view class="btnBox">
+					<navigator class="add" url="/pages/address/edit/address-edit">
+							<text>新增地址</text>
+					</navigator>
+				</view>
+	</view>
+</view>
+
+<view class="address-wrap  {{addressesList.length>0 ? 'hidden':''}}" scroll-y="true">
+	<scroll-view class="addressesEmpty {{(addressesList.length<0 && !loading) ? 'hidden':'disb'}}">
+  		<!-- <image class="icon" src="./images/address.png" alt="imgs"></image> -->
+  		<view class="text">还没有收货地址哦</view>
+  		<navigator class="add" url="/pages/address/edit/address-edit">
+        	<view class="btn btn-default">快去添加</view>
+    	</navigator>
+	</scroll-view>
+</view>
+

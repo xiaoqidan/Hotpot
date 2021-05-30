@@ -1,0 +1,42 @@
+<view>
+   <view class="orders-box">
+        <view class="orders">我的订单</view>
+        <view class="orders-list" wx:for="{{orders}}" wx:key="index" >
+            <view class="orders-number">订单类型：{{item.typeValue}}</view>
+            <view class="orders-detail">
+                <view class="left">订单内容：</view><view class="right">{{item.content}}</view>
+                <br/><view class="left">订单价格：</view><view class="right">{{item.money}}</view>
+                <br/><view class="left">订单时间：</view><view class="right">{{item.createTime}}</view>
+                <view class="status">订单状态：</view><view class="right">{{item.statusFy}}</view>
+                <view class="status" wx:if="{{item.status ==2 && item.type ==2 }}">配送信息：</view><view class="right">{{item.psy}}-{{item.psyPhone}}</view>
+            </view>
+            <view class="orders-footer" wx:if="{{item.status == 1 }}">
+                <text>待付：￥{{item.money}}</text>
+                <button size="mini" class="orders-btn" data-id='{{item.id}}' bindtap="cancel">取消</button>
+            </view>
+            <view class="orders-footer" wx:if="{{item.status == 2 && item.type == 1}}">
+                <text>待付：￥{{item.money}}</text>
+                <button size="mini" class="orders-btn" data-id='{{item.id}}' bindtap="pey">付款</button>
+            </view>
+            <view class="orders-footer" wx:if="{{item.status == 2 && item.type == 2}}">
+                <text>实付：￥{{item.money}}</text>
+                <button size="mini" class="orders-btn" data-id='{{item.id}}' bindtap="receive">收货</button>
+            </view>
+            <view class="orders-footer" wx:if="{{item.status == 3 }}">
+                <text>实付：￥{{item.money}}</text>
+                <button size="mini" class="orders-btn" data-id='{{item.id}}' bindtap="goComment">评价</button>
+            </view>
+            <!-- <view class="orders-footer" wx:if="{{item.status == 2}} ">
+                <text>实付：￥{{item.money}}</text>
+                <button size="mini" class="orders-btn" data-id='{{item.id}}' bindtap="goComment">{{item.statusFy}}</button>
+            </view> -->
+        </view>
+    </view>
+   <!-- <view class='go-center' style="margin-top:100px">
+      <i class="iconfont icon-dingdan dindgan-i" ></i>
+   </view>
+   <view class='go-center note-btn'>目前没有即时订单</view>
+   <view class='go-center' style='margin-top:20px' >
+     <view class='go-center down-center start-btn' bindtap='golist'>开始点餐</view>
+   </view> -->
+</view>

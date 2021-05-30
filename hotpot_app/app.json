@@ -1,0 +1,50 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/food/list/list",
+    "pages/food/wm/wm",
+    "pages/food/edit/edit",
+    "pages/food/add/add",
+    "pages/user/user",
+    "pages/notice/notice",
+    "pages/comment/list/list",
+    "pages/order/list/list",
+    "pages/order/balance/balance",
+    "pages/address/list/address-list",
+    "pages/address/edit/address-edit",
+    "pages/category/category",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF0000",
+    "navigationBarTitleText": "小天鹅火锅",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#FF9C35",
+    "borderStyle": "black",
+    "list": [
+        {
+            "selectedIconPath": "images/home_s.png",
+            "iconPath": "images/home.png",
+            "pagePath": "pages/index/index",
+            "text": "首页"
+        },
+        {
+            "selectedIconPath": "images/order_s.png",
+            "iconPath": "images/order.png",
+            "pagePath": "pages/order/list/list",
+            "text": "订单"
+        },
+        {
+            "selectedIconPath": "images/mine_s.png",
+            "iconPath": "images/mine.png",
+            "pagePath": "pages/user/user",
+            "text": "我的"
+        }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

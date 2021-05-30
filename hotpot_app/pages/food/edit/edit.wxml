@@ -1,0 +1,33 @@
+<view>
+<!-- 左侧菜单 -->
+  <view class="list-left-menu">
+    <view wx:for="{{listData}}" wx:key="unique" class="{{index==activeIndex?'list-left-menu-box-selected':'list-left-menu-box-unselect'}}" data-index="{{index}}" bindtap='selectMenu'>
+      <view class="list-menu-name">{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 右侧菜单 -->
+  <scroll-view scroll-y="true" style='height:1200rpx;' bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class="content" id="a{{index}}" wx:for="{{listData}}" wx:key="unique">
+      <view class='list-tab'>{{item.name}}</view>
+      <view class='content-list' wx:for="{{item.foods}}" wx:key="unique" wx:for-item="items" wx:for-index="indexs">
+        <view class='list-image-box' bindtap="selectInfo">
+          <image class="list-image" mode="widthFix" src='{{items.imgUrl}}'></image>
+        </view>
+        <view class='issue-name' bindtap="goEdit" data-id="{{items.id}}">
+          <view>{{items.name}}</view>
+          <view style='margin-top:20rpx;color:#F05A86'>
+            ¥ {{items.price}}.00
+            <i class="iconfont icon-jian plus-icon" data-id="{{items.id}}" catchtap="deleteFood"></i>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 底部新增 -->
+  <view class="btnBox" >
+    <navigator class="add" url="../add/add">
+        <text>新增菜品</text>
+    </navigator>
+  </view>
+
+</view>

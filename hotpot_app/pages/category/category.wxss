@@ -1,0 +1,124 @@
+/* @import "/style/comm/form.wxss";  */
+.form-group {
+	/*background-color: var(--white);影响圆角*/
+	padding: 1rpx 30rpx;
+	display: flex;
+	align-items: center;
+	min-height: 100rpx;
+	justify-content: space-between;
+}
+
+.form-group+.form-group {
+	border-top: 1rpx solid #eee;
+}
+
+.form-group .title {
+	text-align: justify;
+	padding-right: 30rpx;
+	font-size: 30rpx;
+	position: relative;
+	height: 60rpx;
+	line-height: 60rpx;
+}
+.form-group input {
+	flex: 1;
+	font-size: 30rpx;
+	color: #555;
+	padding-right: 20rpx;
+}
+
+
+.table {
+  height: 80%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: 0px solid darkgray;
+  border-radius: 20rpx;
+ }
+ .tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 3rem;
+  align-items: center;
+ }
+ .td {
+  justify-content: center;
+  text-align: center;
+ }
+ .bg-w{
+  background: snow;
+ }
+ .bg-g{
+  background: #E6F3F9;
+ }
+ .th {
+  justify-content: center;
+  background: #FF9C35;
+  color: #fff;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+ }
+.btnBox {
+  position: fixed;
+  width: 100%;
+  padding: 0.75rem;
+  bottom:0;
+  box-sizing: border-box;
+}
+.add {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  bottom: 0.5rem;
+  background-color: #FF9C35;
+  color: #FFF;
+  text-align: center;
+  border-radius: 0.2rem;
+}
+
+.drawer_screen {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1000;  
+  background: #000;  
+  opacity: 0.5;  
+  overflow: hidden;  
+}  
+  
+.drawer_box_ad { 
+  margin-left: 7%; 
+  width: 86%; 
+  overflow: hidden;  
+  position: fixed;  
+  top: 15%; 
+  z-index: 1001;  
+  background: #FFFFFF;  
+  border-radius: 4px;
+} 
+.drawer_content_ad {  
+  height: 230px;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-box {
+	background-color: #fff;
+	border-radius: 20rpx;
+	margin-bottom: 24rpx;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.plus-icon{
+  color:#FF2D4B;
+  font-size:46rpx;
+}

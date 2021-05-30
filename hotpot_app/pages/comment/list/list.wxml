@@ -1,0 +1,36 @@
+<view>
+  <!-- <view class="shop-title"> <image src="/images/py.jpg"></image>评论列表</view> -->
+    <!--内容-->
+  <view class='content'>
+    <view style="padding-top:30px">评分：{{starAll}}</view>
+    <view class='left'>内容：</view>
+    <view class='right'>
+      <text class="labelColor"  wx:if="{{typeData[1] > 0}}">服务态度好 {{typeData[1]}}</text>
+      <text class="labelColor"  wx:if="{{typeData[2] > 0}}">排队时间短 {{typeData[2]}}</text>
+      <text class="labelColor"  wx:if="{{typeData[3] > 0}}">效率高 {{typeData[3]}}</text>
+      <text class="labelColor"  wx:if="{{typeData[4] > 0}}">门店环境好 {{typeData[4]}}</text>
+      <text class="labelColor"  wx:if="{{typeData[5] > 0}}">很专业 {{typeData[5]}}</text>
+    </view>
+  </view>
+  <view class="shop" wx:for="{{listData}}" wx:key="item" bindtap='redTo' data-shop="{{item.id}}">
+    <view class="user-image">
+      <image src="{{item.url}}" ></image>
+    </view>
+    <view class="right">
+      <view class='title'>名称：{{item.name}}</view>
+      <view class="right-ad">
+        <view  data-index="{{index}}"  class="star" wx:for="{{item.userStars}}" wx:key="index">
+          <image src="{{item}}"></image>
+        </view>
+      </view>
+      <view class='detail'><span style="color:black">内容：</span>{{item.content}}</view>
+      <view class='sell-count'>{{item.createTime}}</view>
+      <view class="back" wx:if="{{item.back}}"><span style="color:black">回复：</span>{{item.back}}</view>
+    </view>
+  </view>
+ </view>
+
+
+
+
+
